@@ -1,0 +1,57 @@
+{
+    "title": "FaceSwap",
+    "description": "Face Swap",
+    "endpoint": "https://arible-faceswap.simdi.workers.dev",
+    "fields": [
+        {
+            "name": "base_image",
+            "title": "Original Image",
+            "description": "The image you want your face in.",
+            "type": "File",
+            "mimeTypes": [
+                "image/jpeg",
+                "image/png"
+            ],
+            "validation": {
+                "allOf": [
+                    {
+                        "min": 1,
+                        "message": "We need the original image (the image you want to place your face in)"
+                    },
+                    {
+                        "max": 1,
+                        "message": "Don't be greedy :)"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "swap_image_upload",
+            "title": "Face Image",
+            "description": "Image of your face.",
+            "type": "File",
+            "mimeTypes": [
+                "image/jpeg",
+                "image/png"
+            ],
+            "validation": {
+                "allOf": [
+                    {
+                        "min": 1
+                    },
+                    {
+                        "max": 1,
+                        "message": "Don't be greedy :)"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "swap_image",
+            "title": "Preview",
+            "type": "Image",
+            "value": "{{swap_image_upload}}?func=face&face_margin=20",
+            "depends": "{{swap_image_upload}}"
+        }
+    ]
+}
